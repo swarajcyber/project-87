@@ -10,15 +10,15 @@ var block_image_object= "";
 
 function new_image(get_image)
 {
-	fabric.Image.fromURL("player.png",function(Img){
-        player_object=Img
-        player_object.scaleToWidth(150)
-        player_object.scaleToHeight(140)
-        player_object.set({
+	fabric.Image.fromURL(get_image,function(Img){
+		block_image_object=Img
+        block_image_object.scaleToWidth(150)
+		block_image_object.scaleToHeight(140)
+		block_image_object.set({
             top:player_y,
             left:player_x
         })
-        canvas.add(player_object)
+        canvas.add( block_image_object)
     })
 }
 
@@ -48,7 +48,7 @@ console.log(keyPressed);
 	if(keyPressed == '80')
 	{
 		block_x = 600;
-		new_image("pr.png")
+		new_image(	"pr.png")
 	}
 	if(keyPressed == '66')
 	{
