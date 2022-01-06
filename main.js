@@ -1,59 +1,75 @@
+canvas=document.getElementById("myCanvas")
+ctx=canvas.getContext("2d")
 
-var canvas=new fabric.Canvas("myCanvas")
- block_y=1;
- block_x=1;
+img_width = 300;
+img_height = 100;
 
-block_image_width = 350;
-block_image_height = 430;
+var img_image;
 
-var block_image_object= "";
+img_x = 100;
+img_y = 100;
 
-function new_image(get_image)
-{
-	fabric.Image.fromURL(get_image,function(Img){
-		block_image_object=Img
-        block_image_object.scaleToWidth(150)
-		block_image_object.scaleToHeight(140)
-		block_image_object.set({
-            top:player_y,
-            left:player_x
-        })
-        canvas.add( block_image_object)
-    })
+function add() {
+	img_imgTag = new Image(); //defining a variable with a new image
+	img_imgTag.onload = uploadimg; // setting a function, onloading this variable
+	img_imgTag.src = img_image;   // load image
 }
 
-window.addEventListener("keydown", my_keydown);
+function uploadimg() {
+
+	ctx.drawImage(img_imgTag, img_x, img_y, img_width, img_height);
+}
+
+window.addEventListener("keydown",my_keydown)
 
 function my_keydown(e)
 {
-keyPressed = e.keyCode;
-console.log(keyPressed);
-
-	if(keyPressed == '82') // add appropriate keycode
-	{
-		new_image ("rr.jpg")
-	}
-	if(keyPressed == '71')
-	{
-		block_x = 200;
-		new_image("gr.png")
-		
-	}
+	keyPressed = e.keyCode;
+	console.log(keyPressed);
 	
-	if(keyPressed == '89')
-	{
-		block_x =350;
-		new_image("yr.png")
+		if((keyPressed >=97 && keyPressed<=122)|| (keyPressed >=65 && keyPressed<=90)){
+		aplhabetkey()
+		document.getElementById("d1").innerHTML="You pressed alphabet  key";}
+	
+		else if(keyPressed >=48 && keyPressed<=57){
+			numberkey()
+			document.getElementById("d1").innerHTML="You pressed number key";}
+	else if(keyPressed>=37 && keyPressed<=40){
+		arrowkey();
+		document.getElementById("d1").innerHTML="You pressed  arrow key";
+	}	
+	else if (keyPressed==17||keyPressed==18||keyPressed==27){
+		specialkey()
+		document.getElementById("d1").innerHTML="You pressed special key"
 	}
-	if(keyPressed == '80')
-	{
-		block_x = 600;
-		new_image(	"pr.png")
+	else{
+		otherkey()
+		document.getElementById("d1").innerHTML="You pressed other key"
 	}
-	if(keyPressed == '66')
-	{
-		block_x = 700;
-		new_image("br.png")
 	}
+
+function aplhabetkey()
+{
+	img_image="ALpkey.png" 
+add()
+}
+function numberkey()
+{	img_image="numkey.png" 
+add()
 	
 }
+function arrowkey()
+{img_image="Arrkey.png" 
+add()
+}
+function specialkey()
+{img_image="spkey.png" 
+add()
+	
+}
+function otherkey()
+{
+	img_image="otherkey.png";
+	add();
+}
+	
